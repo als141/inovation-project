@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Heart, MessageCircle, Share2, MoreHorizontal } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -119,9 +120,11 @@ export function PostCard({
             <div className="grid grid-cols-2 gap-2">
               {post.images.slice(0, 4).map((image, index) => (
                 <div key={index} className="relative aspect-video rounded-md overflow-hidden">
-                  <img
+                  <Image
                     src={image}
                     alt={`投稿画像 ${index + 1}`}
+                    width={200}
+                    height={113}
                     className="w-full h-full object-cover"
                   />
                   {post.images.length > 4 && index === 3 && (

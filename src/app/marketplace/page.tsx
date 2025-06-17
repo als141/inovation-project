@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Plus, Heart, Eye, Search } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -140,21 +141,21 @@ export default function MarketplacePage() {
             <Card key={item.id} className="hover:shadow-md transition-shadow">
               <CardHeader className="p-0">
                 <div className="relative">
-                  <div className="aspect-square bg-muted rounded-t-lg flex items-center justify-center">
+                  <div className="aspect-square bg-muted rounded-t-lg overflow-hidden">
                     {item.photos.length > 0 ? (
-                      <img 
+                      <Image 
                         src={item.photos[0]} 
                         alt={item.title}
-                        className="w-full h-full object-cover rounded-t-lg"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                          e.currentTarget.nextElementSibling!.style.display = 'flex';
-                        }}
+                        width={300}
+                        height={300}
+                        className="w-full h-full object-cover"
+                        onError={() => {}}
                       />
-                    ) : null}
-                    <div className={`${item.photos.length > 0 ? 'hidden' : 'flex'} items-center justify-center text-muted-foreground`}>
-                      📸 画像なし
-                    </div>
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-muted-foreground">
+                        📸 画像なし
+                      </div>
+                    )}
                   </div>
                   <Button
                     variant="ghost"

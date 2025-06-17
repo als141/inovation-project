@@ -50,11 +50,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     initAuth();
   }, []);
 
-  const login = async (email: string, _password: string): Promise<boolean> => {
+  const login = async (email: string, password: string): Promise<boolean> => {
     try {
       setIsLoading(true);
       
-      // デモ用：どのメールアドレスでもログイン成功
+      // デモ用：どのメール・パスワードでもログイン成功
+      // パスワードは使用していないが、将来の実装のために残しておく
+      console.log('Login attempt with:', { email, password: password ? '[REDACTED]' : 'empty' });
+      
       const user = getCurrentUser();
       user.email = email; // 入力されたメールに更新
       

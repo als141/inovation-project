@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Plus, Star, Clock, MapPin, Users } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -111,19 +112,15 @@ export default function FoodPage() {
                   <CardTitle className="text-lg">{item.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <img 
+                  <div className="aspect-video bg-muted rounded-lg overflow-hidden">
+                    <Image 
                       src={item.image} 
                       alt={item.name}
-                      className="w-full h-full object-cover rounded-lg"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        e.currentTarget.nextElementSibling!.style.display = 'flex';
-                      }}
+                      width={400}
+                      height={225}
+                      className="w-full h-full object-cover"
+                      onError={() => {}}
                     />
-                    <div className="hidden items-center justify-center text-muted-foreground">
-                      📸 画像なし
-                    </div>
                   </div>
 
                   <p className="text-sm text-muted-foreground line-clamp-2">

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { useAuth } from './AuthContext';
 import { TokenTransaction } from '@/types';
 import { TOKEN_REWARDS } from '@/lib/constants';
@@ -42,16 +42,16 @@ export function TokenProvider({ children }: TokenProviderProps) {
     }
   }, [user]);
 
-  const saveTransactions = (newTransactions: TokenTransaction[]) => {
+  const saveTransactions = useCallback((newTransactions: TokenTransaction[]) => {
     if (user) {
       localStorage.setItem(
         `token_transactions_${user.id}`, 
         JSON.stringify(newTransactions)
       );
     }
-  };
+  }, [user]);
 
-  const addTokens = (amount: number, reason: string, relatedId?: string) => {
+  const addTokens = useCallback((amount: number, reason: string, relatedId?: string) => {
     if (!user || amount <= 0) return;
 
     const transaction: TokenTransaction = {
@@ -70,7 +70,7 @@ export function TokenProvider({ children }: TokenProviderProps) {
 
     // ユーザーのトークン残高を更新
     updateProfile({ tokens: user.tokens + amount });
-  };
+  }, [user, transactions, updateProfile, saveTransactions]);
 
   const spendTokens = (amount: number, reason: string, relatedId?: string): boolean => {
     if (!user || amount <= 0 || user.tokens < amount) {
@@ -115,7 +115,7 @@ export function TokenProvider({ children }: TokenProviderProps) {
         localStorage.setItem(`last_daily_reward_${user.id}`, today);
       }, 1000);
     }
-  }, [user]);
+  }, [user, addTokens]);
 
   const value: TokenContextType = {
     balance: user?.tokens || 0,
