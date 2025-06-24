@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Plus, Search, Calendar, MessageSquare } from 'lucide-react';
+import { Plus, Search, Calendar, MessageSquare, Trophy } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -15,11 +15,18 @@ interface QuickAction {
 
 const quickActions: QuickAction[] = [
   {
-    title: '新規投稿',
-    description: '投稿を作成',
-    href: '/create-post',
-    icon: <Plus className="h-5 w-5" />,
+    title: 'メッセージ',
+    description: 'DMを確認',
+    href: '/messages',
+    icon: <MessageSquare className="h-5 w-5" />,
     color: 'bg-blue-500 hover:bg-blue-600',
+  },
+  {
+    title: 'ランキング',
+    description: 'トークンランキング',
+    href: '/ranking',
+    icon: <Trophy className="h-5 w-5" />,
+    color: 'bg-yellow-500 hover:bg-yellow-600',
   },
   {
     title: '検索',
@@ -34,13 +41,6 @@ const quickActions: QuickAction[] = [
     href: '/events',
     icon: <Calendar className="h-5 w-5" />,
     color: 'bg-purple-500 hover:bg-purple-600',
-  },
-  {
-    title: 'メッセージ',
-    description: 'メッセージを確認',
-    href: '/messages',
-    icon: <MessageSquare className="h-5 w-5" />,
-    color: 'bg-orange-500 hover:bg-orange-600',
   },
 ];
 

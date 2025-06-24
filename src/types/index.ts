@@ -480,3 +480,35 @@ export interface CareerData {
   internshipOpportunities: Internship[];
   careerResources: Resource[];
 }
+
+export interface Message {
+  id: string;
+  conversationId: string;
+  senderId: string;
+  receiverId: string;
+  content: string;
+  type: 'text' | 'image' | 'file';
+  fileUrl?: string;
+  fileName?: string;
+  read: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Conversation {
+  id: string;
+  participants: string[];
+  lastMessage: Message;
+  unreadCount: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface TokenRanking {
+  rank: number;
+  user: User;
+  totalTokens: number;
+  monthlyTokens: number;
+  weeklyTokens: number;
+  achievements: Achievement[];
+}

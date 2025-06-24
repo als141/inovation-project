@@ -52,7 +52,7 @@ export function Header({
               <span className="text-white font-bold text-sm">C</span>
             </div>
             <span className="hidden sm:inline-block font-semibold text-lg">
-              コミュニティ掲示板システム
+              新大コミュニティ掲示板システム
             </span>
             <span className="sm:hidden font-semibold text-lg">
               CBS

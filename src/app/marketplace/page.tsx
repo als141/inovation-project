@@ -141,19 +141,30 @@ export default function MarketplacePage() {
             <Card key={item.id} className="hover:shadow-md transition-shadow">
               <CardHeader className="p-0">
                 <div className="relative">
-                  <div className="aspect-square bg-muted rounded-t-lg overflow-hidden">
+                  <div className="aspect-square bg-muted rounded-t-lg overflow-hidden relative">
                     {item.photos.length > 0 ? (
                       <Image 
                         src={item.photos[0]} 
                         alt={item.title}
-                        width={300}
-                        height={300}
-                        className="w-full h-full object-cover"
-                        onError={() => {}}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        className="object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent && !parent.querySelector('.fallback-text')) {
+                            const fallback = document.createElement('div');
+                            fallback.className = 'fallback-text absolute inset-0 flex items-center justify-center text-muted-foreground bg-muted flex-col';
+                            fallback.innerHTML = '<span class="text-2xl">📸</span><span class="text-sm mt-1">画像なし</span>';
+                            parent.appendChild(fallback);
+                          }
+                        }}
                       />
                     ) : (
-                      <div className="flex items-center justify-center h-full text-muted-foreground">
-                        📸 画像なし
+                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground flex-col">
+                        <span className="text-2xl">📸</span>
+                        <span className="text-sm mt-1">画像なし</span>
                       </div>
                     )}
                   </div>

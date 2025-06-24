@@ -10,6 +10,8 @@ import {
   ShoppingBag, 
   BookOpen, 
   Briefcase,
+  MessageSquare,
+  Award,
   User,
   Settings
 } from 'lucide-react';
@@ -29,6 +31,8 @@ const navigationItems = [
 ];
 
 const bottomItems = [
+  { icon: MessageSquare, label: 'メッセージ', href: '/messages', color: 'text-blue-600' },
+  { icon: Award, label: 'ランキング', href: '/ranking', color: 'text-yellow-600' },
   { icon: User, label: 'プロフィール', href: '/profile' },
   { icon: Settings, label: '設定', href: '/settings' },
 ];
@@ -117,6 +121,7 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
                   icon={item.icon}
                   label={item.label}
                   href={item.href}
+                  color={item.color}
                   isActive={pathname === item.href}
                 />
               ))}

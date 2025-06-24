@@ -112,14 +112,24 @@ export default function FoodPage() {
                   <CardTitle className="text-lg">{item.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="aspect-video bg-muted rounded-lg overflow-hidden">
+                  <div className="aspect-video bg-muted rounded-lg overflow-hidden relative">
                     <Image 
                       src={item.image} 
                       alt={item.name}
-                      width={400}
-                      height={225}
-                      className="w-full h-full object-cover"
-                      onError={() => {}}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const parent = target.parentElement;
+                        if (parent && !parent.querySelector('.fallback-text')) {
+                          const fallback = document.createElement('div');
+                          fallback.className = 'fallback-text absolute inset-0 flex items-center justify-center text-muted-foreground bg-muted';
+                          fallback.innerHTML = '🍽️<br><span class="text-sm">画像なし</span>';
+                          parent.appendChild(fallback);
+                        }
+                      }}
                     />
                   </div>
 

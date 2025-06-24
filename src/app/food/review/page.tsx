@@ -248,8 +248,19 @@ export default function CreateReviewPage() {
                     src={photo}
                     alt={`レビュー写真 ${index + 1}`}
                     fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-cover"
-                    onError={() => {}}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent && !parent.querySelector('.fallback-text')) {
+                        const fallback = document.createElement('div');
+                        fallback.className = 'fallback-text absolute inset-0 flex items-center justify-center text-muted-foreground bg-muted flex-col';
+                        fallback.innerHTML = '<span class="text-2xl">📸</span><span class="text-sm">読み込み失敗</span>';
+                        parent.appendChild(fallback);
+                      }
+                    }}
                   />
                   <Button
                     type="button"

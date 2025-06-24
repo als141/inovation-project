@@ -1,7 +1,8 @@
 import { 
   User, SportsEvent, Tournament, Sport, Participation, MenuItem, Review, MealInvitation, 
   Restaurant, MarketItem, Category, ResearchPaper, Discussion, ResearchQuestion, Field, 
-  Company, JobPosting, CareerEvent, Internship, Notification, Activity, Event, Achievement
+  Company, JobPosting, CareerEvent, Internship, Notification, Activity, Event, Achievement,
+  Message, Conversation, TokenRanking
 } from '@/types';
 
 export const mockUsers: User[] = [
@@ -529,6 +530,123 @@ export const mockInternships: Internship[] = [
     applicationDeadline: new Date('2025-06-30'),
     startDate: new Date('2025-08-01'),
     status: 'open',
+  },
+];
+
+export const mockMessages: Message[] = [
+  {
+    id: '1',
+    conversationId: 'conv-1',
+    senderId: '2',
+    receiverId: '1',
+    content: 'こんにちは！バスケットボールのイベント、参加させていただきたいです。',
+    type: 'text',
+    read: false,
+    createdAt: new Date('2025-06-10T14:30:00'),
+    updatedAt: new Date('2025-06-10T14:30:00'),
+  },
+  {
+    id: '2',
+    conversationId: 'conv-1',
+    senderId: '1',
+    receiverId: '2',
+    content: 'ありがとうございます！ぜひ参加してください。初心者の方でも大丈夫ですよ。',
+    type: 'text',
+    read: true,
+    createdAt: new Date('2025-06-10T14:35:00'),
+    updatedAt: new Date('2025-06-10T14:35:00'),
+  },
+  {
+    id: '3',
+    conversationId: 'conv-2',
+    senderId: '3',
+    receiverId: '1',
+    content: 'プログラミング入門書セットの件でご連絡しました。',
+    type: 'text',
+    read: false,
+    createdAt: new Date('2025-06-10T16:20:00'),
+    updatedAt: new Date('2025-06-10T16:20:00'),
+  },
+  {
+    id: '4',
+    conversationId: 'conv-3',
+    senderId: '4',
+    receiverId: '1',
+    content: '今度一緒にお昼食べませんか？',
+    type: 'text',
+    read: false,
+    createdAt: new Date('2025-06-10T12:15:00'),
+    updatedAt: new Date('2025-06-10T12:15:00'),
+  },
+];
+
+export const mockConversations: Conversation[] = [
+  {
+    id: 'conv-1',
+    participants: ['1', '2'],
+    lastMessage: mockMessages[1],
+    unreadCount: 0,
+    createdAt: new Date('2025-06-10T14:30:00'),
+    updatedAt: new Date('2025-06-10T14:35:00'),
+  },
+  {
+    id: 'conv-2',
+    participants: ['1', '3'],
+    lastMessage: mockMessages[2],
+    unreadCount: 1,
+    createdAt: new Date('2025-06-10T16:20:00'),
+    updatedAt: new Date('2025-06-10T16:20:00'),
+  },
+  {
+    id: 'conv-3',
+    participants: ['1', '4'],
+    lastMessage: mockMessages[3],
+    unreadCount: 1,
+    createdAt: new Date('2025-06-10T12:15:00'),
+    updatedAt: new Date('2025-06-10T12:15:00'),
+  },
+];
+
+export const mockTokenRankings: TokenRanking[] = [
+  {
+    rank: 1,
+    user: mockUsers[4], // 山田健二 - 312 tokens
+    totalTokens: 312,
+    monthlyTokens: 145,
+    weeklyTokens: 67,
+    achievements: [mockAchievements[1], mockAchievements[2]],
+  },
+  {
+    rank: 2,
+    user: mockUsers[1], // 佐藤花子 - 230 tokens
+    totalTokens: 230,
+    monthlyTokens: 98,
+    weeklyTokens: 34,
+    achievements: [mockAchievements[0], mockAchievements[1]],
+  },
+  {
+    rank: 3,
+    user: mockUsers[0], // 田中太郎 - 150 tokens
+    totalTokens: 150,
+    monthlyTokens: 76,
+    weeklyTokens: 23,
+    achievements: [mockAchievements[0]],
+  },
+  {
+    rank: 4,
+    user: mockUsers[2], // 鈴木一郎 - 89 tokens
+    totalTokens: 89,
+    monthlyTokens: 45,
+    weeklyTokens: 12,
+    achievements: [mockAchievements[0]],
+  },
+  {
+    rank: 5,
+    user: mockUsers[3], // 高橋美咲 - 45 tokens
+    totalTokens: 45,
+    monthlyTokens: 45,
+    weeklyTokens: 15,
+    achievements: [mockAchievements[0]],
   },
 ];
 

@@ -8,9 +8,8 @@ import {
   Trophy, 
   Utensils, 
   ShoppingBag, 
-  BookOpen, 
-  Briefcase,
-  User
+  MessageSquare, 
+  Award
 } from 'lucide-react';
 
 const navigationItems = [
@@ -18,9 +17,8 @@ const navigationItems = [
   { icon: Trophy, label: 'スポーツ', href: '/sports' },
   { icon: Utensils, label: 'ごはん', href: '/food' },
   { icon: ShoppingBag, label: 'フリマ', href: '/marketplace' },
-  { icon: BookOpen, label: '研究', href: '/research' },
-  { icon: Briefcase, label: '就活', href: '/career' },
-  { icon: User, label: 'プロフィール', href: '/profile' },
+  { icon: MessageSquare, label: 'メッセージ', href: '/messages' },
+  { icon: Award, label: 'ランキング', href: '/ranking' },
 ];
 
 export function MobileTabNav() {
