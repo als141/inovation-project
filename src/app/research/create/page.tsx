@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Upload, X, Plus, Lock, Globe, Shield } from 'lucide-react';
+import { ArrowLeft, Upload, X, Lock, Globe, Shield } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,7 +10,6 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Switch } from '@/components/ui/switch';
 import { useAuth } from '@/context/AuthContext';
 import { useTokens } from '@/context/TokenContext';
 import { useNotifications } from '@/context/NotificationContext';
@@ -137,7 +136,7 @@ export default function CreateResearchPaperPage() {
         router.push('/research');
       }, 1000);
 
-    } catch (error) {
+    } catch {
       addNotification({
         type: 'error',
         title: '投稿エラー',
@@ -374,7 +373,7 @@ export default function CreateResearchPaperPage() {
                         ? 'border-primary bg-primary/5' 
                         : 'border-muted hover:border-muted-foreground/50'
                     }`}
-                    onClick={() => setFormData(prev => ({ ...prev, accessLevel: option.id as any }))}
+                    onClick={() => setFormData(prev => ({ ...prev, accessLevel: option.id as 'public' | 'protected' | 'private' }))}
                   >
                     <div className="flex items-center gap-3">
                       <Icon className="h-5 w-5" />

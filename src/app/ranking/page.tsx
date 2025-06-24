@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/context/AuthContext';
-import { mockTokenRankings, mockUsers } from '@/lib/mock-data';
+import { mockTokenRankings } from '@/lib/mock-data';
 import { TOKEN_REWARDS } from '@/lib/constants';
 
 export default function RankingPage() {

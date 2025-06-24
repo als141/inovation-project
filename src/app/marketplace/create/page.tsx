@@ -108,7 +108,7 @@ export default function CreateMarketItemPage() {
         router.push('/marketplace');
       }, 1000);
 
-    } catch (error) {
+    } catch {
       addNotification({
         type: 'error',
         title: '投稿エラー',

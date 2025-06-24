@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { ArrowLeft, Star, Upload, X, Plus, Camera } from 'lucide-react';
+import { ArrowLeft, Star, X, Plus, Camera } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,8 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/context/AuthContext';
 import { useTokens } from '@/context/TokenContext';
 import { useNotifications } from '@/context/NotificationContext';
-import { mockMenuItems, mockRestaurants } from '@/lib/mock-data';
-import type { Review } from '@/types';
+import { mockMenuItems } from '@/lib/mock-data';
 
 export default function CreateReviewPage() {
   const router = useRouter();
@@ -87,19 +86,6 @@ export default function CreateReviewPage() {
     setIsLoading(true);
 
     try {
-      // モックデータとしてレビューを作成
-      const newReview: Partial<Review> = {
-        id: `review-${Date.now()}`,
-        authorId: user.id,
-        menuItemId: formData.menuItemId,
-        rating: rating,
-        comment: formData.comment,
-        photos: photos,
-        tags: tags,
-        createdAt: new Date(),
-        helpful: 0,
-      };
-
       // レビュー投稿でトークン獲得
       addTokens(8, 'レビュー投稿');
       
@@ -118,7 +104,7 @@ export default function CreateReviewPage() {
         router.push('/food');
       }, 1000);
 
-    } catch (error) {
+    } catch {
       addNotification({
         type: 'error',
         title: '投稿エラー',

@@ -2,14 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Calendar, MapPin, Users, Clock, Info } from 'lucide-react';
+import { ArrowLeft, MapPin, Info } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/context/AuthContext';
 import { useTokens } from '@/context/TokenContext';
 import { useNotifications } from '@/context/NotificationContext';
@@ -90,7 +89,7 @@ export default function CreateSportsEventPage() {
         router.push('/sports');
       }, 1000);
 
-    } catch (error) {
+    } catch {
       addNotification({
         type: 'error',
         title: '作成エラー',
@@ -173,7 +172,7 @@ export default function CreateSportsEventPage() {
               <div className="space-y-2">
                 <Label htmlFor="skillLevel">レベル *</Label>
                 <Select value={formData.skillLevel} onValueChange={(value) => 
-                  setFormData(prev => ({ ...prev, skillLevel: value as any }))
+                  setFormData(prev => ({ ...prev, skillLevel: value as 'beginner' | 'intermediate' | 'advanced' }))
                 } required>
                   <SelectTrigger>
                     <SelectValue placeholder="レベルを選択" />
