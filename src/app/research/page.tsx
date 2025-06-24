@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -16,9 +17,11 @@ export default function ResearchPage() {
             研究成果を共有し、学術的な議論を通じて知見を深めよう！
           </p>
         </div>
-        <Button>
-          <FileText className="h-4 w-4 mr-2" />
-          論文投稿
+        <Button asChild>
+          <Link href="/research/create">
+            <FileText className="h-4 w-4 mr-2" />
+            論文投稿
+          </Link>
         </Button>
       </div>
 
@@ -100,24 +103,29 @@ export default function ResearchPage() {
         </Card>
       </div>
 
-      {/* Coming Soon */}
+      {/* Available Features */}
       <Card>
         <CardHeader>
-          <CardTitle>研究セクション - 開発中</CardTitle>
+          <CardTitle>利用可能な機能</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-12 space-y-4">
-            <div className="text-4xl">🚧</div>
-            <h3 className="text-lg font-semibold">研究セクションは現在開発中です</h3>
+          <div className="text-center py-8 space-y-4">
+            <div className="text-4xl">📚</div>
+            <h3 className="text-lg font-semibold">論文投稿機能が利用可能です</h3>
             <p className="text-muted-foreground max-w-md mx-auto">
-              論文投稿、Q&A機能、ディスカッション機能など、学術活動をサポートする機能を準備中です。
+              研究成果を投稿して学術コミュニティと共有しましょう。複数の公開設定から選択できます。
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
-              <Badge variant="outline">論文投稿</Badge>
-              <Badge variant="outline">Q&A</Badge>
-              <Badge variant="outline">ディスカッション</Badge>
-              <Badge variant="outline">分野別フィルタ</Badge>
+              <Badge variant="default">論文投稿</Badge>
+              <Badge variant="outline">Q&A (準備中)</Badge>
+              <Badge variant="outline">ディスカッション (準備中)</Badge>
+              <Badge variant="outline">分野別フィルタ (準備中)</Badge>
             </div>
+            <Button asChild className="mt-4">
+              <Link href="/research/create">
+                論文を投稿する
+              </Link>
+            </Button>
           </div>
         </CardContent>
       </Card>
