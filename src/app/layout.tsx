@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "コミュニティ掲示板システム",
+  title: "Universe",
   description: "大学生向けコミュニティ掲示板システム",
 };
 

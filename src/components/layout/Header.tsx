@@ -48,14 +48,14 @@ export function Header({
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-white font-bold text-sm">C</span>
+            <div className="h-8 w-8 rounded-lg overflow-hidden">
+              <img src="/icon.png" alt="Universe" className="w-full h-full object-cover" />
             </div>
             <span className="hidden sm:inline-block font-semibold text-lg">
-              新大コミュニティ掲示板システム
+              Universe
             </span>
             <span className="sm:hidden font-semibold text-lg">
-              CBS
+              Universe
             </span>
           </Link>
         </div>

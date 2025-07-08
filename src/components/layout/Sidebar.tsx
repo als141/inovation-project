@@ -131,7 +131,7 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
           {/* Footer */}
           <div className="border-t p-4">
             <div className="text-xs text-muted-foreground">
-              <p>コミュニティ掲示板システム</p>
+              <p>Universe</p>
               <p>Version 1.0.0</p>
             </div>
           </div>
